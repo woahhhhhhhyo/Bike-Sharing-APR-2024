@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake and Morgan's Linear Regression Trained Bike Model</title>
+    <style>
+        body {
+            background-color: #f2f2f2; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 50px;
+            background-color: #f2f2f2; 
+        }
+
+        .title-box {
+            background-color: #3C78B3; 
+            padding-top: 50px; 
+            border: 1px solid #ccc;
+            border-radius: 5px; 
+            display: inline-block;
+            margin-bottom: 20px;
+            text-align: center; /* Center title */
+			
+			height: 175px;
+			width: 100%;
+        }
+		
+		.end-box {
+            background-color: #3C78B3; 
+            padding-top: 50px; 
+            border: 1px solid #ccc;
+            border-radius: 5px; 
+            display: inline-block;
+			margin-top: 20px;
+            text-align: center; /* Center title */
+			
+			height: 35px;
+			width: 100%;
+        }
+		
+		.dataspread-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.dataspread-container div {
+			width: 48%; /* Adjust width to accommodate both images with margin */
+		}
+		
+		.dataspread-container img {
+			width: auto; /* Adjust width to maintain original size */
+			height: auto;
+			max-width: 100%; /* Ensure images fit within container */
+		}
+
+        .content-box {
+            margin-bottom: 20px;
+            text-align: left; /* Left-align content */
+            background-color: #f2f2f2; 
+        }
+        
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .image-container img {
+            max-width: 100%; /* Adjusted to fit two images side by side */
+            height: auto;
+        }
+
+        h1 {
+            color: #333; 
+            text-align: center; /* Center title */
+        }
+        
+        p {
+            color: #666; 
+            line-height: 1.6;
+            margin-bottom: 20px; /* Add margin between paragraphs */
+        }
+
+        .seaborn {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 20px;
+		}
+
+		.seaborn .textbox {
+			flex: 1;
+			padding: 20px;
+			background-color: transparent;
+			border: none;
+			border-radius: 5px;
+			margin-right: 10px; /* Adjust margin if needed */
+		}
+
+		.seaborn-img {
+			flex: 1;
+		}
+
+		.seaborn img {
+			max-width: 100%;
+			height: auto;
+		}
+
+        .textbox {
+            padding: 20px; /* Add padding to the textbox /
+            background-color: transparent; / Set background color to transparent /
+            border: none; / Remove border /
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-box">
+        <h1 style="color:white;font-size: 50px;">Development Behind Linear Regression Model</h1>
+    </div>
+<div class="container">	
+    <div class="content-box">
+        <h2>Why we chose our model:</h2>
+        <p>We knew that linear regression would be a good fit for this data because it is adept at predicting one simple target variable. Generally speaking, linear regression is best at providing clear insight into the impact that each feature has on one target variable, which offers easy interpretation of the relationship between the target and features. Additionally, it is a perfect choice of model when the goal is to predict a continuous target variable, which is exactly what we are trying to achieve with count, so linear regression was the best choice for our dataset. So, once we chose linear regression as our machine learning model, the first step to building it was to view the spread of the data and get acquainted with our dataset.</p>
+    </div>
+	
+	
+    <div class="image-container">
+		<div class="dataspread-container">
+			<div>
+				<h2>Dataspread One</h2>
+				<img src="../static/images/dataspread_one.png" alt="Dataspread One" style="outline: 2px solid black;">
+			</div>
+			<div>
+				<h2>Dataspread Two</h2>
+				<img src="../static/images/dataspread_two.png" alt="Dataspread Two" style="outline: 2px solid black;">
+			</div>
+		</div>
+	</div>
+	
+    <div class="seaborn">
+		<div class="textbox">
+        <h2>Seaborn</h2>
+        <p>After looking at the spread of the data, we used Seaborn to view the spread of certain features against other features. Viewing these graphs allowed us to see which features have a linear relationship. Features that have a linear relationship should not both be kept because they're repetitive. So, from these graphs, we chose to keep season, month, holiday, weekday, weather, temperature, wind speed, and humidity as our x variables to predict the count of bikes on any given day.</p>
+        <p style="margin-top: 10px;">Finally, we used PCA to do even more feature reduction before training our model. The graph below shows how many features are associated with the total explained variance. The goal of PCA is to reduce as many features as possible while still keeping at least 90% of the explained variance. As you can see from the graph, we needed to keep 5 PC's to have at least 90% explained variance. So, we reduced it to 5.</p>
+		</div>
+    <div class="seaborn-img">
+	
+        <img src="../static/images/seaborn.png" alt="Seaborn" style="outline: 2px solid black;">
+    </div>
+	</div>
+    <div>
+	<div class="image-container">
+		<div class="dataspread-container">
+		<div>
+        <h2>Explained Variance by PCA</h2>
+        <img src="../static/images/explained_variance_by_pca.png" alt="Explained Variance by PCA" style="outline: 2px solid black;">
+		</div>
+		<div>
+		<h2>Final Linear Regression Model</h2>
+		
+        <p>After training our model, we produced this scatterplot which shows the actual values of count, or how many bikes were used on a given day, verses what our model predicted. As you can see there is a strong linear correlation between the actual and predicted values of our model, meaning it's making good predictions.</p>
+		
+		<img src="../static/images/linear_reg_model.png" alt="Lineaer Regression Model" style="outline: 1px solid black;">
+		</div>
+		</div>
+	</div>
+    </div>
+	
+	
+    <div>
+	<div class="dataspread-container">
+		<div class="textbox">
+		<h2>Metrics</h2>
+		<p>Additionally, we ran tests to determine the metrics of our model and see how good it really performed. Although our model appeared to make good predictions from the linear correlation on the scatterplot, when viewing our metrics, it's clear that our model is incapable of accurately prediciting number of bikes.</p>
+		</div>
+		<div>
+        <img src="../static/images/metrics.png" alt="Metrics" style="margin-top: 75px;">
+		</div>
+	</div>
+    </div>
+	
+	<div>
+		<h2>Concluding Statements</h2>
+		<p>So, to summarize, our model produced a scatterplot that looked linear. However, when taking a closer look at our metrics, it appears our model cannot accurately predict the count of bikes on any given day. While this is disappointing, it's an important lesson in checking metrics over assuming model performance from visuals.</p>
+    </div>
+	
+</div>
+
+	<div class="end-box">
+    </div>
+	
+</body>
+</html>
