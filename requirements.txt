@@ -1,0 +1,6 @@
+Flask
+connexion[swagger-ui]
+joblib
+matplotlib
+pandas
+scikit-learn

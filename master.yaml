@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  version: '0.0'
+  title: Morgan and Jake's Bike Linear Regression Model
+  description: Introducing open api 3.0.0
+
+paths:
+  /file/<filename>:
+    post:
+      tags:
+        - Upload
+      summary: Upload your data file 
+      operationId: src.file.upload
+      parameters:
+        - name: filename
+          in: query
+          description: filename to be uploaded
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+  /model_type:
+    get:
+      tags:
+        - Model Type
+      operationId: src.model_type.model_type
+      description: Returns string of model type
+      responses:
+        '200':
+          description: 'Success'
+  /reasons:
+    get:
+      tags:
+        - Why We Chose Our Model
+      operationId: src.reasons.reasons
+      description: Returns logic behind linear regression
+      responses:
+        '200':
+          description: 'Success'
+ 
+  
+  /predict/<filename>:
+    post:
+      tags:
+        - PRED
+      summary: Generates a prediction using an uploaded file
+      operationId: src.prediction.new
+      parameters:
+        - name: filename
+          in: query
+          description: filename to be uploaded
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+  /figure:
+    get:
+      tags:
+        - PRED
+      summary: Displays a figure based on your inputted data
+      operationId: src.figure.disp_plot
+      description: Returns the prediction for a given set of inputs
+      parameters:
+        - name: name
+          in: query
+          description: filename to be uploaded
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Success'
+  /plot/<filename>:
+    post:
+      tags:
+        - Prediction Plot
+      summary: Returns a plot prediction for a given set of inputs
+      operationId: src.plotting.new
+      parameters:
+        - name: filename
+          in: path
+          description: filename to be uploaded
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Success'
+      requestBody:
+       content:
+         multipart/form-data:
+           schema:
+             type: object
+             properties:
+               file:
+                 type: string
+                 format: binary
+servers:
+  
+  - url: 'http://localhost:8000/e222'
